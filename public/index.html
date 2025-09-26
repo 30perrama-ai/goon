@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maxwell Game Launcher</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; background-color: #f0f0f0; }
+    input { width: 300px; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
+    button { padding: 10px 20px; font-size: 16px; margin-left: 10px; border-radius: 5px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+    ul { list-style: none; padding: 0; margin-top: 30px; }
+    li { margin: 10px 0; }
+    a { text-decoration: none; color: #007bff; font-size: 18px; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Maxwell Game Launcher</h1>
+  <input type="text" id="query" placeholder="Search games...">
+  <button onclick="search()">Search</button>
+  <ul id="results"></ul>
+
+  <script>
+    const links = [
+      { title: "CrazyGames", url: "/proxy?url=https://www.crazygames.com" },
+      { title: "Poki", url: "/proxy?url=https://poki.com" },
+      { title: "Slope - CrazyGames", url: "/proxy?url=https://www.crazygames.com/game/slope" },
+      { title: "Moto X3M - Poki", url: "/proxy?url=https://poki.com/en/g/moto-x3m" },
+      { title: "Drift Hunters - CrazyGames", url: "/proxy?url=https://www.crazygames.com/game/drift-hunters" },
+      { title: "Madalin Stunt Cars 2", url: "/proxy?url=https://www.crazygames.com/game/madalin-stunt-cars-2" },
+      { title: "Shell Shockers - CrazyGames", url: "/proxy?url=https://www.crazygames.com/game/shellshockers" },
+      { title: "1v1.LOL - Poki", url: "/proxy?url=https://poki.com/en/g/1v1-lol" },
+      { title: "Zombs Royale - CrazyGames", url: "/proxy?url=https://www.crazygames.com/game/zombsroyale-io" },
+      { title: "Paper.io 2 - CrazyGames", url: "/proxy?url=https://www.crazygames.com/game/paper-io-2" },
+      { title: "Cut the Rope - Poki", url: "/proxy?url=https://poki.com/en/g/cut-the-rope" },
+      { title: "2048 - Poki", url: "/proxy?url=https://poki.com/en/g/2048" },
+      { title: "Temple Run 2 - Poki", url: "/proxy?url=https://poki.com/en/g/temple-run-2" },
+      { title: "Subway Surfers - Poki", url: "/proxy?url=https://poki.com/en/g/subway-surfers" },
+      { title: "Pokémon Ruby Emulator", url: "/proxy?url=https://gbapokemon.com/play/pokemon-ruby/" },
+      { title: "Super Mario Advance - Emulator", url: "/proxy?url=https://gbapokemon.com/play/super-mario-advance/" },
+      { title: "Legend of Zelda: Minish Cap", url: "/proxy?url=https://gbapokemon.com/play/legend-of-zelda-the-minish-cap/" },
+      { title: "Metroid Fusion - Emulator", url: "/proxy?url=https://gbapokemon.com/play/metroid-fusion/" }
+    ];
+
+    function search() {
+      const q = document.getElementById("query").value.toLowerCase();
+      const results = document.getElementById("results");
+      results.innerHTML = "";
+
+      links.forEach(link => {
+        if (link.title.toLowerCase().includes(q)) {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = link.url;
+          a.target = "_blank";
+          a.textContent = link.title;
+          li.appendChild(a);
+          results.appendChild(li);
+        }
+      });
+
+      if (results.innerHTML === "") {
+        results.innerHTML = "<li>No results found. Try another game.</li>";
+      }
+    }
+  </script>
+</body>
+</html>
